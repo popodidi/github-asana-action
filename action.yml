@@ -4,6 +4,9 @@ inputs:
   asana-pat:
     description: 'Asana Public Access Token.'
     required: true
+  workspace:
+    description: 'Asana workspace ID to work on.'
+    required: true
   task-comment:
     description: 'Provide text, which will add a comment with the pull request link to the asana task.'
     required: false
@@ -13,9 +16,12 @@ inputs:
   trigger-phrase:
     description: 'Prefix before the task i.e ASANA TASK: https://app.asana.com/1/2/3'
     required: true
+  pr-body:
+    description: 'Pull Request body description that contains the trigger phrase'
+    default: '${{ github.event.pull_request.body }}'
 branding:
-  icon: 'chevron-right'  
+  icon: 'chevron-right'
   color: 'gray-dark'
 runs:
-  using: 'node12'
+  using: 'node16'
   main: 'index.js'
